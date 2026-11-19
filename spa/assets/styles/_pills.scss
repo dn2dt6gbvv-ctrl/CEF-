@@ -1,0 +1,49 @@
+@import './base';
+
+// Плашки-бейджи (<q>, <rub>) из applyTextPills. Класс глобальный, чтобы работать
+// и в чате, и в push-уведомлениях. Фон приходит инлайном из форматтера; здесь — только
+// геометрия. font-*: inherit обязателен: глобальное правило `*` иначе навяжет фиксированный
+// размер/шрифт, и плашка не отмасштабируется под текст хоста.
+.chat-pill {
+  display: inline-block;
+  padding: rs(5) rs(10);
+  border-radius: rs(15);
+  line-height: 1;
+  white-space: nowrap;
+  word-break: keep-all;
+
+  width: max-content;
+
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+
+  // дефолтный цвет текста плашки — белый; внутренний {RRGGBB} перебьёт инлайном
+  color: white;
+}
+
+// флаг <q o …>: выключает унаследованную тень текста (актуально в чате при закрытом окне).
+.chat-pill--no-shadow {
+  text-shadow: none;
+}
+
+// плашка <amz=N>: иконка амазинг-коина + число. Идёт после .chat-pill, поэтому
+// inline-flex перебивает inline-block. Иконка — растр, маска не нужна.
+.chat-amz {
+  display: inline-flex;
+  align-items: center;
+  gap: rs(5);
+}
+
+.chat-amz__value {
+  position: relative;
+  top: rs(1);
+  color: #F1C529;
+}
+
+.chat-amz__icon {
+  width: 0.95em;
+  height: 0.95em;
+  flex-shrink: 0;
+  background: url('/assets/images/icons/amazing-coin--yellow.png') center center/contain no-repeat;
+}

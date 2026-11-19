@@ -1,0 +1,44 @@
+@import 'quill/dist/quill.core.css';
+@import 'quill/dist/quill.snow.css';
+@import 'quill/dist/quill.bubble.css';
+@import './font-size';
+@import './font-family';
+
+quill-view, quill-editor, .quill-view, .quill-editor {
+  width: 100%;
+
+  h1 * {
+    font-size: inherit;
+  }
+
+  strong {
+    font-weight: bold;
+
+    * {
+      font-weight: bold;
+      color: inherit;
+    }
+  }
+
+  blockquote {
+    border-left: vw(4px) solid #959595 !important;
+  }
+
+  .ql-toolbar {
+    z-index: 1;
+  }
+
+  &.fixed {
+    .ql-toolbar.ql-snow + .ql-container.ql-snow {
+      border-top: 1px solid #ccc;
+      margin-top: vw(66px);
+    }
+
+    .ql-toolbar {
+      top: 0;
+      position: fixed;
+      background: white;
+      border-top: 0;
+    }
+  }
+}

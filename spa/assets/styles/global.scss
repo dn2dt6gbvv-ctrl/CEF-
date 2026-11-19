@@ -1,0 +1,95 @@
+@import './base';
+@import './quill/quill';
+@import './material/material';
+@import './pills';
+@import './dialog-boxes';
+
+body, html {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  // HUD-оверлеи выезжают/уводят фон за правый край (roulette bg-bleed, rouletteSlide
+  // translateX 110%) — clip не даёт им растягивать документ и рождать горизонтальный скролл
+  overflow-x: clip;
+}
+
+// CDK 18 показывает drag-превью как popover: UA-стиль [popover] { overflow: auto }
+// рисует скроллбары на перетаскиваемом предмете при малейшем переполнении клона —
+// возвращаем поведение обычного элемента
+.cdk-drag-preview {
+  overflow: visible;
+}
+
+// Полёт drag-превью к месту вставки — только там, где включён явно через
+// cdkDragPreviewClass (инвентарь). Глобально в модулях с кастомным дропом
+// (job-crafting) анимация выглядела как «возврат пустого предмета»
+.cdk-drag-preview.cdk-drag-animating.inventory-drag-preview {
+  transition: transform 100ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+* {
+  color: #2e2e2e;
+  font-size: rv(16px);
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+  word-break: break-word;
+  line-height: 1em; // todo change to 1em
+  outline: none;
+}
+
+a {
+  color: #3c3c3c;
+  text-decoration: none;
+  font-weight: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+input {
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  display: block;
+  color: unset;
+  margin: unset;
+  margin-block-start: unset;
+  margin-block-end: unset;
+  margin-inline-start: unset;
+  margin-inline-end: unset;
+  font-size: unset;
+  font-weight: unset;
+  line-height: unset;
+}
+
+.not-selectable {
+  user-select: none;
+  outline: none;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.22);
+  color: white;
+  text-shadow:
+    0 0 1px white,
+    0 0 6px rgba(255, 255, 255, 0.7);
+}
+
+.material-icons{
+  font-family: 'Material Icons', sans-serif !important;
+}
+.mat-icon {
+  width: 1em;
+  height: 1em;
+  font-size: 1em;
+
+  &:not([defaultColor]) {
+    * {
+      color: currentColor;
+      fill: currentColor;
+    }
+  }
+}

@@ -1,0 +1,79 @@
+@import 'styles/base';
+
+$sizes: 10px, 14px, 16px, 18px, 24px, 30px, 36px, 48px, 60px, 72px;
+
+@each $size in $sizes {
+  .ql-size-#{$size} {
+    font-size: vw($size);
+    line-height: 1.2em;
+  }
+}
+
+.ql-editor.ql-blank::before {
+  font-size: vw(14px);
+  line-height: 1.2em;
+}
+
+quill-view, quill-editor, .quill-view, .quill-editor {
+  p, pre, blockquote, li {
+    line-height: 1.2em;
+    font-size: vw(14px);
+
+    * {
+      font-size: inherit;
+    }
+
+    sup, sub {
+      font-size: 0.75em;
+    }
+  }
+
+  blockquote span {
+    line-height: inherit;
+  }
+
+  ol, ul {
+    @each $size in $sizes {
+      li:has(> span.ql-size-#{$size}) {
+        font-size: $size;
+        line-height: 1.2em;
+      }
+    }
+  }
+}
+
+.ql-toolbar .ql-size {
+  width: vw(70px) !important;
+
+  .ql-picker-label {
+    &::before {
+      content: '14px' !important;
+    }
+
+    @each $size in $sizes {
+      &[data-value='#{$size}'] {
+        &::before {
+          content: '#{$size}' !important;
+        }
+      }
+    }
+  }
+
+  .ql-picker-item {
+    font-size: vw(14px);
+    line-height: 1.2em;
+    &::before {
+      content: '14px' !important;
+    }
+
+    @each $size in $sizes {
+      &[data-value='#{$size}'] {
+        font-size: vw($size);
+        line-height: 1.2em;
+        &::before {
+          content: '#{$size}' !important;
+        }
+      }
+    }
+  }
+}

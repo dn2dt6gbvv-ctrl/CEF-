@@ -1,0 +1,407 @@
+@use 'sass:math';
+
+@function vmin($size) {
+  $base-size: 1080;
+  @return ($size / $base-size) * 100vmin;
+}
+
+@function rs($size) {
+  @return min(($size / (1080 * 0.01)) * 1vh, ($size / (1920 * 0.01)) * 1vw);
+}
+
+@function rsm($size) {
+  @return max(($size / (1080 * 0.01)) * 1vh, ($size / (1920 * 0.01)) * 1vw);
+}
+
+@function vh($font){
+  $vw-context: 1920 * 0.01 * 1px;
+  @return math.div($font, $vw-context) * 1vw;
+  @return $font;
+}
+
+@function vw($font){
+  $vw-context: 1080 * 0.01 * 1px;
+  @return math.div($font, $vw-context) * 1vh;
+  @return $font;
+}
+
+//
+
+@function rw($font) {
+  $vw-context: 1920 * 0.01 * 1px;
+  @return math.div($font, $vw-context) * 1vw;
+  @return $font;
+}
+
+@function rh($font) {
+  $vw-context: 1080 * 0.01 * 1px;
+  @return math.div($font, $vw-context) * 1vh;
+  @return $font;
+}
+
+@function rv($font) {
+  @return min(rh($font), rw($font));
+}
+
+@mixin square-rs($size) {
+  width: rs($size);
+  height: rs($size);
+}
+
+@mixin square($size) {
+  width: rv($size);
+  height: rv($size);
+}
+
+@mixin circle($size) {
+  width: rv($size);
+  height: rv($size);
+  border-radius: 50%;
+}
+
+//
+
+@mixin backgroundImage($image, $size: contain, $position: center, $repeat: no-repeat) {
+  background-image: $image;
+  background-size: $size;
+  background-repeat: $repeat;
+  background-position: $position;
+}
+
+@mixin mat-icon-size($size, $width: 0) {
+  width: $size;
+  height: $size;
+  font-size: $size;
+  line-height: $size;
+
+  @if $width != 0 {
+    width: $width;
+  }
+}
+
+@mixin mat-icon-color($color: #FFFFFF) {
+  color: $color;
+}
+
+@mixin text-shadow($size: 1px, $color: black, $blur: vw(0px)) {
+  text-shadow:
+    $color $size $size $blur,
+    $color -#{$size} -#{$size} $blur,
+    $color -#{$size} $size $blur,
+    $color $size -#{$size} $blur;
+}
+
+@mixin math-font($font: 16px, $weight: 400, $color: #FFFFFF) {
+  font-family: math, sans-serif;
+  font-weight: $weight;
+  font-size: rv($font);
+  line-height: 1.3em;
+  letter-spacing: 0;
+  color: $color;
+}
+
+@mixin digital-numbers($font: 16px, $weight: 400, $color: #FFFFFF) {
+  font-family: 'Digital Numbers', sans-serif;
+  font-weight: $weight;
+  font-size: rv($font);
+  line-height: 1.3em;
+  letter-spacing: 0;
+  color: $color;
+}
+
+@mixin proxima-nova($font: 16px, $weight: 400, $color: #FFFFFF) {
+  font-family: 'Proxima Nova', sans-serif;
+  font-weight: $weight;
+  font-size: rv($font);
+  line-height: 1.3em;
+  letter-spacing: 0;
+  color: $color;
+}
+
+@mixin proxima-nova-rs($font: 16, $weight: 400, $color: #FFFFFF) {
+  font-family: 'Proxima Nova', sans-serif;
+  font-weight: $weight;
+  font-size: rs($font);
+  line-height: 1.3em;
+  letter-spacing: 0;
+  color: $color;
+}
+
+@mixin gotham-pro($font: 16px, $weight: 400, $color: #FFFFFF) {
+  font-family: 'Gotham Pro', sans-serif;
+  font-weight: $weight;
+  font-size: rv($font);
+  line-height: 1.3em;
+  letter-spacing: 0;
+  color: $color;
+}
+
+@mixin gotham-pro-rs($font: 16, $weight: 400, $color: #FFFFFF) {
+  font-family: 'Gotham Pro', sans-serif;
+  font-weight: $weight;
+  font-size: rs($font);
+  line-height: 1.3em;
+  letter-spacing: 0;
+  color: $color;
+}
+
+@mixin roboto($font: 16px, $weight: 400, $color: #FFFFFF) {
+  font-family: 'Roboto', sans-serif;
+  font-weight: $weight;
+  font-size: rv($font);
+  line-height: 1.3em;
+  letter-spacing: 0;
+  color: $color;
+}
+
+@mixin roboto-rs($font: 16, $weight: 400, $color: #FFFFFF) {
+  font-family: 'Roboto', sans-serif;
+  font-weight: $weight;
+  font-size: rs($font);
+  line-height: 1.3em;
+  letter-spacing: 0;
+  color: $color;
+}
+
+@mixin source-serif($font: 16px, $weight: 400, $color: #FFFFFF) {
+  font-family: 'Source Serif Pro', sans-serif;
+  font-weight: $weight;
+  font-size: rv($font);
+  line-height: 1.3em;
+  letter-spacing: 0;
+  color: $color;
+}
+
+@mixin ballet($font: 16px, $weight: 400, $color: #FFFFFF) {
+  font-family: 'Ballet', sans-serif;
+  font-weight: $weight;
+  font-size: rv($font);
+  line-height: 1.3em;
+  letter-spacing: 0;
+  color: $color;
+}
+
+@mixin playfair-display($font: 16px, $weight: 400, $color: #FFFFFF) {
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: $weight;
+  font-size: rv($font);
+  line-height: 1.3em;
+  letter-spacing: 0;
+  color: $color;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin joystix-rs($font: 16, $weight: 400, $color: #FFFFFF) {
+  font-family: 'Joystix', sans-serif;
+  font-weight: $weight;
+  font-size: rs($font);
+  line-height: 1.3em;
+  letter-spacing: 0;
+  color: $color;
+}
+
+//
+
+%button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-align: center;
+  transition: box-shadow 200ms linear;
+  box-sizing: border-box;
+  border-radius: vw(3px);
+  cursor: pointer;
+
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+}
+
+/* sizes for button */
+%button-large {
+  padding: vw(18px) vw(32px);
+  min-width: vw(157px);
+  min-height: vw(56px);
+}
+
+%button-medium {
+  padding: vw(14px) vw(24px);
+  min-width: vw(158px);
+  min-height: vw(48px);
+}
+
+%button-small {
+  padding: vw(10px) vw(24px);
+  min-width: vw(140px);
+  min-height: vw(40px);
+}
+
+/* default button colors */
+%button-red {
+  color: white;
+  background: linear-gradient(127.69deg, #FF3E14 6.56%, #FD852E 84.95%);
+}
+
+%button-blue {
+  color: white;
+  background: linear-gradient(60.25deg, #0082CB 8.47%, #3DA2FF 91.53%);
+}
+
+%button-green {
+  color: white;
+  background: linear-gradient(60.58deg, #21A34D 8.37%, #60DB56 91.63%);
+}
+
+/* default button and box shadow colors */
+%button-red-box {
+  color: white;
+  background: linear-gradient(127.69deg, #BD3838 6.56%, #ee4545 84.95%);
+  box-shadow: 0 vw(6px) vw(10px) rgba(#BD3838, 0.35);
+
+  &:hover {
+    box-shadow: 0 vw(6px) vw(10px) rgba(#BD3838, 0.15);
+  }
+}
+
+%button-orange-box {
+  color: white;
+  background: linear-gradient(127.69deg, #FF3E14 6.56%, #FD852E 84.95%);
+  box-shadow: 0 vw(6px) vw(10px) rgba(253, 133, 46, 0.35);
+
+  &:hover {
+    box-shadow: 0 vw(6px) vw(10px) rgba(253, 133, 46, 0.15);
+  }
+}
+
+/* cancel button and box shadow colors */
+%button-gray-box {
+  color: white;
+  background: rgba(white, 0.1);
+  box-shadow: 0 vw(6px) vw(10px) rgba(white, 0.1);
+
+  &:hover {
+    box-shadow: 0 vw(6px) vw(10px) rgba(white, 0.15);
+  }
+}
+
+%button-blue-box {
+  color: white;
+  background: linear-gradient(60.25deg, #0082CB 8.47%, #3DA2FF 91.53%);
+  box-shadow: 0 vw(6px) vw(10px) rgba(61, 162, 255, 0.35);
+
+  &:hover {
+    box-shadow: 0 vw(10px) vw(15px) rgba(61, 162, 255, 0.15);
+  }
+}
+
+%button-green-box {
+  color: white;
+  background: linear-gradient(60.58deg, #21A34D 8.37%, #60DB56 91.63%);
+  box-shadow: 0 vw(6px) vw(10px) rgba(96, 219, 86, 0.35);
+
+  &:hover {
+    box-shadow: 0 vw(6px) vw(10px) rgba(96, 219, 86, 0.15);
+  }
+}
+
+%button-yellow-box {
+  color: #313131;
+  background: #F2994A;
+  box-shadow: 0 vw(6px) vw(10px) rgba(#F2994A, 0.35);
+
+  &:hover {
+    box-shadow: 0 vw(6px) vw(10px) rgba(#F2994A, 0.15);
+  }
+}
+
+%button-bordered {
+  border: 1px solid #e9e9e9;
+}
+
+%button-icon-white:before {
+  filter: invert(1);
+}
+
+%logotype-criminal {
+  background-color: #2e2e2e;
+  min-width: vw(160px);
+  min-height: vw(43px);
+  -webkit-mask-image: url('/assets/images/logotypes/logotype-criminal.svg');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+}
+
+%logotype-roleplay {
+  background-color: #2e2e2e;
+  min-height: vw(39px);
+  -webkit-mask-image: url('/assets/images/logotypes/logotype-roleplay.svg');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+}
+
+%fixed-page {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.state-ui {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  &__back-hint {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: vw(14px);
+    left: vw(50px);
+    bottom: vw(50px);
+
+    &__button {
+      padding: vw(9px) vw(20px);
+      background: rgba(255, 246, 235, 0.1);
+      border: 1px solid rgba(255, 246, 235, 0.15);
+      border-radius: vw(4px);
+      color: rgba(255, 246, 235, 0.95);
+      transition: all 200ms;
+
+      font-family: 'Gotham Pro', 'Proxima Nova', sans-serif;
+      font-size: vw(16px);
+      line-height: 1.4em;
+      font-weight: 700;
+      color: #979797;
+    }
+
+    &__text {
+      font-family: 'Gotham Pro', 'Proxima Nova', sans-serif;
+      line-height: vw(18px);
+      font-size: vw(19px);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: #979797;
+      max-width: vw(180px);
+      transition: color 150ms;
+    }
+
+    &:hover {
+      .state-ui__back-hint__button {
+        background: rgba(255, 246, 235, 0.15);
+        color: rgba(255, 246, 235, 1);
+      }
+
+      .state-ui__back-hint__text {
+        color: #a6a6a6;
+      }
+    }
+  }
+}

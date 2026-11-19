@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- lucide unfold-vertical, переведён в залитые формы под стиль набора (толщина 2.2, скруглённые концы) -->
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<g>
+	<!-- пунктирная средняя линия -->
+	<rect x="0.9" y="10.9" width="4.2" height="2.2" rx="1.1"/>
+	<rect x="6.9" y="10.9" width="4.2" height="2.2" rx="1.1"/>
+	<rect x="12.9" y="10.9" width="4.2" height="2.2" rx="1.1"/>
+	<rect x="18.9" y="10.9" width="4.2" height="2.2" rx="1.1"/>
+	<!-- стрелка вверх: штанга + шеврон из двух наклонных пилюль с вершиной в (12,2) -->
+	<rect x="10.9" y="0.9" width="2.2" height="8.2" rx="1.1"/>
+	<rect x="10.28" y="2.4" width="6.44" height="2.2" rx="1.1" transform="rotate(45 13.5 3.5)"/>
+	<rect x="7.28" y="2.4" width="6.44" height="2.2" rx="1.1" transform="rotate(-45 10.5 3.5)"/>
+	<!-- стрелка вниз: штанга + шеврон с вершиной в (12,22) -->
+	<rect x="10.9" y="14.9" width="2.2" height="8.2" rx="1.1"/>
+	<rect x="10.28" y="19.4" width="6.44" height="2.2" rx="1.1" transform="rotate(-45 13.5 20.5)"/>
+	<rect x="7.28" y="19.4" width="6.44" height="2.2" rx="1.1" transform="rotate(45 10.5 20.5)"/>
+</g>
+</svg>

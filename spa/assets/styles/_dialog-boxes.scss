@@ -1,0 +1,130 @@
+@import './base';
+
+// Инфо-боксы диалогов (<box warning|obtain|stack|main|hint|earn> из applyDialogBoxes в
+// parse-dialog-content). Класс глобальный: контент бокса уходит в innerHTML ячейки диалога,
+.dialog-box {
+
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 400;
+  line-height: 1.2;
+
+  &.warning,
+  &.obtain,
+  &.hint,
+  &.earn,
+  &.main {
+    width: max-content;
+    padding: rs(12);
+    border: rs(1.5) solid;
+    border-radius: rs(16);
+
+    // <box … stretch>: бокс заполняет ячейку (в message-зоне ячейка растянута на ширину
+    // диалога auto-треком). Диалог при этом не расширяет — ширину задаёт остальной контент.
+    &.stretch {
+      width: auto;
+    }
+  }
+
+  &.warning,
+  &.obtain,
+  &.hint,
+  &.earn {
+    display: flex;
+    align-items: center;
+    gap: rs(4);
+
+    &::before {
+      flex-shrink: 0;
+    }
+  }
+
+  &.warning {
+    color: #ef384b;
+    border-color: rgba(239, 56, 75, 0.2);
+    background: rgba(239, 56, 75, 0.1);
+
+    &::before {
+      content: '\26D4'; // EMOJI_WARNING ⛔
+    }
+  }
+
+  &.obtain {
+    color: #f2994a;
+    border-color: rgba(242, 153, 74, 0.2);
+    background: rgba(242, 153, 74, 0.1);
+    border-radius: rs(15);
+
+    &::before {
+      content: '\1F50D'; // EMOJI_SEARCH 🔍
+    }
+  }
+
+  &.hint {
+    color: #FFC48C;
+    border-color: rgba(255, 196, 140, 0.2);
+    background: rgba(255, 196, 140, 0.1);
+
+    &::before {
+      content: '\1F4A1'; // EMOJI_BULB 💡
+    }
+  }
+
+  &.earn {
+    color: #56CCF2;
+    border-color: rgba(86, 204, 242, 0.2);
+    background: rgba(86, 204, 242, 0.1);
+
+    &::before {
+      content: '\1F48E'; // EMOJI_GEM 💎
+    }
+  }
+
+  // блочная плашка без эмодзи (INVENTORY_MAIN_INFO)
+  &.main {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.05);
+    background: rgba(118, 118, 128, 0.15);
+  }
+
+  // INVENTORY_STACK_INFO: инлайновый приглушённый текст, без «коробки» и эмодзи
+  &.stack {
+    display: inline;
+    color: white;
+    opacity: 0.5;
+  }
+
+  // Табличный контент бокса (<box> с \t/\n): собственный grid. Колонки выравниваются между
+  // строками одним grid-контейнером — бокс это один элемент, JS-замеры (как у списка) не нужны.
+  // Готовый шаблон треков приходит инлайн через --dialog-box-grid из applyDialogBoxes
+  // (обычный бокс — repeat(N, max-content), stretch — 1fr + max-content'ы). Отдельная
+  // обёртка (а не grid на самом .dialog-box), чтобы у warning/obtain/hint эмодзи-::before
+  // остался flex-child, а не стал grid-элементом и не сдвинул колонки.
+  &__grid {
+    display: grid;
+    grid-template-columns: var(--dialog-box-grid, max-content);
+    align-items: center;
+    column-gap: rs(40);
+    row-gap: rs(4);
+  }
+
+  // stretch-таблица: сетка на всю ширину бокса, значения (колонки после 1-й) прижаты
+  // к правому краю; короткие значения в колонке уходят вправо внутри своего трека.
+  &.stretch &__grid {
+    width: 100%;
+
+    .dialog-box__col--value {
+      justify-self: end;
+      text-align: right;
+    }
+  }
+
+  // Глобальный `* { color: #2e2e2e }` (global.scss) бьёт по span'ам-ячейкам напрямую и
+  // глушит наследование цвета варианта бокса (у текстовых узлов не-табличных боксов такого
+  // нет — `*` их не матчит). Возвращаем inherit на обоих уровнях, чтобы цвет дотёк от
+  // .dialog-box.{main|warning|…}. Ячейки с {RRGGBB} перебьют это своим инлайновым color.
+  &__grid,
+  &__col {
+    color: inherit;
+  }
+}

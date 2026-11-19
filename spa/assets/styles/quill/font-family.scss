@@ -1,0 +1,47 @@
+@import 'styles/base';
+
+$font-families: (
+  'Roboto': 'Roboto',
+  'GothamPro': 'Gotham Pro',
+  'RodchenkoCTT': 'RodchenkoCTT',
+);
+
+@each $font-name, $font-family in $font-families {
+  .ql-font-#{$font-name} {
+    font-family: $font-family, serif;
+  }
+}
+
+.ql-toolbar .ql-font {
+  width: vw(116px) !important;
+
+  .ql-picker-label {
+    &::before {
+      content: attr(data-value) !important;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 85%;
+    }
+
+    @each $font-name, $font-family in $font-families {
+      &[data-value='#{$font-name}'] {
+        font-family: $font-family, serif;
+      }
+    }
+  }
+
+  .ql-picker-item {
+    &::before {
+      content: attr(data-value) !important;
+    }
+
+    @each $font-name, $font-family in $font-families {
+      &[data-value='#{$font-name}'] {
+        font-family: $font-family, serif;
+      }
+    }
+  }
+}
+
+
